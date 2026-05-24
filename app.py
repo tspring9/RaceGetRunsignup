@@ -66,26 +66,40 @@ def flatten_race_item(item: dict) -> dict:
     }
 
     # If events=T is included, keep a simple summary of included events.
-    events = race.get("events") or []
-    if events:
-        event_names = []
-        event_distances = []
+events = race.get("events") or []
 
-        for event_wrapper in events:
-            event = event_wrapper.get("event", event_wrapper)
-            event_name = event.get("name")
-            if event_name:
-                event_names.append(str(event_name))
+if events:
+    event_names = []
+    event_ids = []
+    event_distances = []
 
-            distance = event.get("distance")
-            units = event.get("distance_units") or event.get("distance_unit")
-            if distance:
-                event_distances.append(f"{distance} {units or ''}".strip())
+    for event_wrapper in events:
+        event = event_wrapper.get("event", event_wrapper)
 
-        row["events"] = "; ".join(event_names)
-        row["event_distances"] = "; ".join(event_distances)
+        # Event Name
+        event_name = event.get("name")
+        if event_name:
+            event_names.append(str(event_name))
 
-    return row
+        # Event ID
+        event_id = event.get("event_id")
+        if event_id:
+            event_ids.append(str(event_id))
+
+        # Distance
+        distance = event.get("distance")
+        units = event.get("distance_units") or event.get("distance_unit")
+
+        if distance:
+            event_distances.append(
+                f"{distance} {units or ''}".strip()
+            )
+
+    row["events"] = "; ".join(event_names)
+    row["event_ids"] = "; ".join(event_ids)
+    row["event_distances"] = "; ".join(event_distances)
+
+return row
 
 
 def fetch_races(

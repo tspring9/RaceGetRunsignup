@@ -99,7 +99,7 @@ if events:
     row["event_ids"] = "; ".join(event_ids)
     row["event_distances"] = "; ".join(event_distances)
 
-    return row
+return row
 
 
 def fetch_races(

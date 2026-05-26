@@ -254,8 +254,8 @@ if not api_key or not api_secret:
     st.code(
         """
 # .streamlit/secrets.toml
-RUNSIGNUP_API_KEY = "your_api_key_here"
-RUNSIGNUP_API_SECRET = "your_api_secret_here"
+RUNSIGNUP_API_KEY = "b5joqX8Ur02116FakymNv5N8wlsCoNhO"
+RUNSIGNUP_API_SECRET = "rllMlmau5DQjlfFcVF0HUJ0ILzfi27gp"
 """.strip(),
         language="toml",
     )
